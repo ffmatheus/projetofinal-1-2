@@ -1,0 +1,28 @@
+create database correntista;
+
+use correntista;
+
+-- Tabela de Correntista
+create table correntista(
+ag int not null,
+conta int not null,
+nome varchar(50) not null,
+email varchar(80) not null,
+telefone char(11) not null,
+saldo decimal(8,2) not null,
+primary key (ag,conta));
+
+-- Tabela de Fluxo_Caixa
+create table fluxo_caixa(
+ag int not null,
+conta int not null,
+fluxo int not null,
+entrada decimal(8,2) not null,
+saida decimal(8,2) not null,
+primary key(ag,conta,fluxo));
+
+-- Tabela de Usuario
+create table correntista.usuario(
+username varchar(100) not null,
+senha varchar(255) not null,
+PRIMARY KEY(username, senha));
