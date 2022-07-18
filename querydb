@@ -26,3 +26,37 @@ create table correntista.usuario(
 username varchar(100) not null,
 senha varchar(255) not null,
 PRIMARY KEY(username, senha));
+
+-- Procedure de UPDATE saldo Correntista
+DROP procedure IF EXISTS `correntista_saldo_update`;
+
+DELIMITER $$
+USE `correntista`$$
+CREATE PROCEDURE `correntista_saldo_update` (
+	IN ag int,
+    IN conta int,
+    IN entrada decimal(8,2),
+    IN saida decimal(8,2)
+)
+BEGIN
+DECLARE fluxoSaldo INT DEFAULT 0;
+SELECT (entrada - saida) INTO @fluxoSaldo;
+UPDATE correntista.correntista c 
+SET 
+    c.saldo = (c.saldo + @fluxoSaldo)
+WHERE
+    c.ag = ag AND c.conta = conta;
+END$$
+
+DELIMITER ;
+
+--trigger para INSERT de fluxo_caixa
+DROP TRIGGER IF EXISTS `correntista`.`fluxo_caixa_AFTER_INSERT`;
+
+DELIMITER $$
+USE `correntista`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `correntista`.`fluxo_caixa_AFTER_INSERT` AFTER INSERT ON `fluxo_caixa` FOR EACH ROW
+BEGIN
+CALL correntista_saldo_update(new.ag, new.conta, new.entrada, new.saida);
+END$$
+DELIMITER ;
