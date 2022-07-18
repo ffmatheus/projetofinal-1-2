@@ -1,3 +1,4 @@
+package com.icarros.global;
 import com.icarros.Cliente;
 
 public class Formatador {

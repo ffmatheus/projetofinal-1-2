@@ -15,12 +15,13 @@ import com.icarros.Usuario;
 import com.icarros.db.UsuarioDAO;
 import com.icarros.global.StringsUtils;
 import com.icarros.global.Validador;
+import javax.swing.JPasswordField;
 
 public class Login {
 
 	private JFrame frame;
 	private JTextField txtUsuario;
-	private JTextField txtSenha;
+	private JPasswordField txtSenha;
 
 	/**
 	 * Launch the application.
@@ -69,11 +70,6 @@ public class Login {
 		frame.getContentPane().add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		txtSenha = new JTextField();
-		txtSenha.setBounds(211, 151, 197, 20);
-		frame.getContentPane().add(txtSenha);
-		txtSenha.setColumns(10);
-		
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnEntrar.setBounds(128, 197, 89, 50);
@@ -83,6 +79,10 @@ public class Login {
 		btnSair.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnSair.setBounds(319, 197, 89, 50);
 		frame.getContentPane().add(btnSair);
+		
+		txtSenha = new JPasswordField();
+		txtSenha.setBounds(211, 151, 197, 20);
+		frame.getContentPane().add(txtSenha);
 		
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

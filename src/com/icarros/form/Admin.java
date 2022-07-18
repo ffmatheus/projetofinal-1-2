@@ -1,6 +1,5 @@
 package com.icarros.form;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.icarros.Correntista;
 import com.icarros.db.CorrentistaDAO;
+import com.icarros.global.Formatador;
 
 public class Admin extends JFrame {
 
@@ -73,19 +73,23 @@ public class Admin extends JFrame {
 		JButton btnNewButton = new JButton("Exibir");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Formatador format = new Formatador();
 				model.setRowCount(0);
 				ArrayList<Correntista> value = correntista.read(null);
 				int n = 0;
 				for(int i = 0; i < value.size(); i++) {	
 					System.out.println(value.get(i));
 					Correntista atual = value.get(i);
+					String telefone = format.formatarTelefone(atual.getTelefone());
+					String conta = format.formatarConta(Integer.toString(atual.getConta()));
+					String saldo = format.formatarSaldo(Double.toString(atual.getSaldo()));
 					Object[] row = new Object[]{
 							Integer.toString(atual.getAg()),
-							Integer.toString(atual.getConta()),
+							conta,
 							atual.getNome(),
 							atual.getEmail(),
-							atual.getTelefone(),
-							Double.toString(atual.getSaldo())};
+							telefone,
+							saldo};
 					model.addRow(row);
 					n++;
 				}
