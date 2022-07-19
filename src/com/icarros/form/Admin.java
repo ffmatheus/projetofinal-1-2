@@ -99,7 +99,7 @@ public class Admin extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(42, 55, 89, 52);
+		btnNewButton.setBounds(42, 56, 89, 29);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Deletar");
@@ -120,7 +120,7 @@ public class Admin extends JFrame {
 				model.removeRow(row);				
 			}
 		});
-		btnNewButton_1.setBounds(42, 162, 89, 52);
+		btnNewButton_1.setBounds(42, 226, 89, 29);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Atualizar");
@@ -153,7 +153,7 @@ public class Admin extends JFrame {
 				
 			}
 		});
-		btnNewButton_2.setBounds(42, 269, 89, 52);
+		btnNewButton_2.setBounds(42, 311, 89, 29);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Inserir");
@@ -169,7 +169,46 @@ public class Admin extends JFrame {
 				createForm.setVisible(true);
 			}
 		});
-		btnNewButton_3.setBounds(42, 376, 89, 52);
+		btnNewButton_3.setBounds(42, 396, 89, 29);
 		contentPane.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("Transacao");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int row = tabela.getSelectedRow();
+				if(row == -1) {
+					JOptionPane.showMessageDialog(
+							null, 
+							"Nao existem registros ou nenhum foi selecionado!",
+							"Error",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				int ag = Integer.parseInt((String) model.getValueAt(row, 0));
+				int conta = Integer.parseInt((String) model.getValueAt(row, 1));
+				String nome = (String) model.getValueAt(row, 2);
+				String email = (String) model.getValueAt(row, 3);
+				String telefone = (String) model.getValueAt(row, 4);
+				Double saldo = Double.parseDouble((String) model.getValueAt(row, 5));
+				Correntista correntista_fluxo = new Correntista();
+				correntista_fluxo.setAg(ag);
+				correntista_fluxo.setConta(conta);
+				correntista_fluxo.setNome(nome);
+				correntista_fluxo.setEmail(email);
+				correntista_fluxo.setTelefone(telefone);
+				correntista_fluxo.setSaldo(saldo);
+				FluxoForm fluxoForm;
+				try {
+					fluxoForm = new FluxoForm(correntista_fluxo);
+					fluxoForm.setVisible(true);	
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnNewButton_4.setBounds(42, 141, 89, 29);
+		contentPane.add(btnNewButton_4);
 	}
 }
