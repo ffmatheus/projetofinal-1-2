@@ -17,6 +17,7 @@ import javax.swing.text.MaskFormatter;
 
 import com.icarros.Correntista;
 import com.icarros.db.CorrentistaDAO;
+import com.icarros.global.Formatador;
 
 public class CreateForm extends JFrame {
 
@@ -90,10 +91,11 @@ public class CreateForm extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Correntista correntista = new Correntista();
+				String agencia_int = Formatador.toNumberString(agencia.getText());
 				if(!nome.getText().isBlank() && !nome.getText().isEmpty()) {
-					correntista.setAg(Integer.parseInt(agencia.getText()));
+					correntista.setAg(Integer.parseInt(agencia_int));
 				}
-				String conta_int = conta.getText().replaceAll("[^\\.0123456789]","");
+				String conta_int = Formatador.toNumberString(conta.getText());
 				if(!nome.getText().isBlank() && !nome.getText().isEmpty()) {
 					correntista.setConta(Integer.parseInt(conta_int));
 				}

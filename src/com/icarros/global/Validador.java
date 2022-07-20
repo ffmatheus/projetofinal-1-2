@@ -27,7 +27,7 @@ public class Validador {
 
 		if (!escolha.matches(this.escolhaRegex)) {
 			this.valido = false;
-			this.mensagemErro = "Escolha uma opï¿½ï¿½o do menu.";
+			this.mensagemErro += "Escolha uma opção do menu.\n";
 		}
 	}
 
@@ -36,7 +36,7 @@ public class Validador {
 
 		if (!nome.matches(this.nomeRegex)) {
 			this.valido = false;
-			this.mensagemErro = "Nï¿½o ï¿½ permitido nï¿½meros.";
+			this.mensagemErro += "Não é permitido números.\n";
 		}
 	}
 
@@ -45,7 +45,7 @@ public class Validador {
 
 		if (!campo.matches(this.numRegex)) {
 			this.valido = false;
-			this.mensagemErro = "Entrada invï¿½lida. Informe somente nï¿½meros.";
+			this.mensagemErro += "Entrada invalida. Informe somente números.\n";
 		}
 	}
 
@@ -54,17 +54,17 @@ public class Validador {
 
 		if (!email.matches(this.emailRegex)) {
 			this.valido = false;
-			this.mensagemErro = "Entre com um email vï¿½lido.";
+			this.mensagemErro += "Entre com um email válido.\n";
 		}
 	}
 
 	public void validarSaldo(String saldo) {
 
 		try {
-			Double.parseDouble(saldo);
+			Double.parseDouble(Formatador.toDoubleString(saldo));
 		} catch (Exception e) {
 			this.valido = false;
-			this.mensagemErro = "Saldo invï¿½lido. informe apenas valores.";
+			this.mensagemErro += "Saldo inválido. informe apenas valores.\n";
 		}
 
 	}
@@ -81,7 +81,7 @@ public class Validador {
 	public boolean campoVazio(String campo) {
 		
 		if (campo.isBlank()) {
-			System.out.println("Campo nÃ£o pode ser vazio, favor digitar novamente:");
+			System.out.println("Campo não pode ser vazio, favor digitar novamente:\n");
 			return true;
 		} else {
 			return false;
@@ -126,5 +126,9 @@ public class Validador {
 
 		return valor;
 
+	}
+
+	public String getErro() {
+		return this.mensagemErro;
 	}
 }

@@ -3,6 +3,7 @@ package com.icarros.form;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +15,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.icarros.Correntista;
 import com.icarros.db.CorrentistaDAO;
+import com.icarros.global.Formatador;
+import com.icarros.global.Validador;
 
 public class UpdateForm extends JFrame {
 
@@ -90,21 +93,43 @@ public class UpdateForm extends JFrame {
 		JButton btnNewButton = new JButton("Atualizar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				Validador val = new Validador();
+				boolean isModified = false;
 				if(!nome.getText().isBlank() && !nome.getText().isEmpty()) {
-				correntista_update.setNome(nome.getText());
+					val.validarNome(nome.getText());
+					correntista_update.setNome(nome.getText());
+					isModified = true;
 				}
 				if(!email.getText().isBlank() && !email.getText().isEmpty()) {
-				correntista_update.setEmail(email.getText());
+					val.validarEmail(email.getText());
+					correntista_update.setEmail(email.getText());
+					isModified = true;
 				}
 				if(!telefone.getText().isBlank() && !telefone.getText().isEmpty()){
-				correntista_update.setTelefone(telefone.getText());
+					String tel_num = telefone.getText().replaceAll("[^0123456789]", "");
+					val.validarApenasNumeros(tel_num);
+					correntista_update.setTelefone(telefone.getText());
+					isModified = true;
 				}
 				if(!saldo.getText().isBlank() && !saldo.getText().isEmpty()) {
-				correntista_update.setSaldo(Double.parseDouble(saldo.getText()));
+					val.validarSaldo(saldo.getText());
+					if (val.estaValido())
+						correntista_update.setSaldo(Double.parseDouble(saldo.getText()));
+					isModified = true;
 				}
-				correntista.update(correntista_update);
-				JOptionPane.showMessageDialog(null, "Correntista atualizado!");
-				setVisible(false);
+				
+				if(val.estaValido()) {
+					
+					if (isModified) {
+						correntista.update(correntista_update);
+						JOptionPane.showMessageDialog(null, "Correntista atualizado!");	
+					}
+					setVisible(false);
+					
+				} else {
+					JOptionPane.showMessageDialog(null, val.getErro());
+				}
 			}
 		});
 		btnNewButton.setBounds(148, 173, 137, 53);

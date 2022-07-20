@@ -30,11 +30,21 @@ public class Formatador {
 		return saldoComMoeda;
 	}
 	
+	// formata todos os campos do cliente de uma vez
 	public static void formatar(Cliente cliente) {
-		// formata todos os campos do cliente de uma vez
 		cliente.setAg(formatarAgencia(cliente.getAg()));
 		cliente.setConta(formatarConta(cliente.getConta()));
 		cliente.setTelefone(formatarTelefone(cliente.getTelefone()));
 		cliente.setSaldo(formatarSaldo(cliente.getSaldo()));
+	}
+	
+	// retorna apenas os numeros da str
+	public static String toNumberString(String num) {
+		return num.replaceAll("[^0123456789]", "");
+	}
+	
+	// retorna apenas numeros da str, separado em formato de moeda ou double
+	public static String toDoubleString(String num) {
+		return num.replaceAll("[^\\.\\,0123456789]", "");
 	}
 }

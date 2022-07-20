@@ -73,16 +73,16 @@ public class Admin extends JFrame {
 		JButton btnNewButton = new JButton("Exibir");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Formatador format = new Formatador();
+				// Formatador format = new Formatador();
 				model.setRowCount(0);
 				ArrayList<Correntista> value = correntista.read(null);
 				int n = 0;
 				for(int i = 0; i < value.size(); i++) {	
 					System.out.println(value.get(i));
 					Correntista atual = value.get(i);
-					String telefone = format.formatarTelefone(atual.getTelefone());
-					String conta = format.formatarConta(Integer.toString(atual.getConta()));
-					String saldo = format.formatarSaldo(Double.toString(atual.getSaldo()));
+					String telefone = Formatador.formatarTelefone(atual.getTelefone());
+					String conta = Formatador.formatarConta(Integer.toString(atual.getConta()));
+					String saldo = Formatador.formatarSaldo(Double.toString(atual.getSaldo()));
 					Object[] row = new Object[]{
 							Integer.toString(atual.getAg()),
 							conta,
@@ -135,12 +135,15 @@ public class Admin extends JFrame {
 							JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				int ag = Integer.parseInt((String) model.getValueAt(row, 0));
-				int conta = Integer.parseInt((String) model.getValueAt(row, 1));
+				String ag_str = (String) model.getValueAt(row, 0);
+				int ag = Integer.parseInt(Formatador.toNumberString(ag_str));
+				String conta_str = (String) model.getValueAt(row, 1);
+				int conta = Integer.parseInt(Formatador.toNumberString(conta_str));
 				String nome = (String) model.getValueAt(row, 2);
 				String email = (String) model.getValueAt(row, 3);
 				String telefone = (String) model.getValueAt(row, 4);
-				Double saldo = Double.parseDouble((String) model.getValueAt(row, 5));
+				String saldo_str = (String) model.getValueAt(row, 5);
+				Double saldo = Double.parseDouble(Formatador.toDoubleString(saldo_str));
 				Correntista correntista_update = new Correntista();
 				correntista_update.setAg(ag);
 				correntista_update.setConta(conta);
@@ -184,12 +187,15 @@ public class Admin extends JFrame {
 							JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				int ag = Integer.parseInt((String) model.getValueAt(row, 0));
-				int conta = Integer.parseInt((String) model.getValueAt(row, 1));
+				String ag_str = (String) model.getValueAt(row, 0);
+				int ag = Integer.parseInt(Formatador.toNumberString(ag_str));
+				String conta_str = (String) model.getValueAt(row, 1);
+				int conta = Integer.parseInt(Formatador.toNumberString(conta_str));
 				String nome = (String) model.getValueAt(row, 2);
 				String email = (String) model.getValueAt(row, 3);
 				String telefone = (String) model.getValueAt(row, 4);
-				Double saldo = Double.parseDouble((String) model.getValueAt(row, 5));
+				String saldo_str = (String) model.getValueAt(row, 5);
+				Double saldo = Double.parseDouble(Formatador.toDoubleString(saldo_str));
 				Correntista correntista_fluxo = new Correntista();
 				correntista_fluxo.setAg(ag);
 				correntista_fluxo.setConta(conta);
