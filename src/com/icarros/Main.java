@@ -14,7 +14,7 @@ import com.icarros.global.Validador;
 
 
 /**
- * @apiNote Inicio da aplicaÃ§Ã£o 
+ * @apiNote Inicio da aplicação 
  * @author renan
  * @author caio
  * @author matheus

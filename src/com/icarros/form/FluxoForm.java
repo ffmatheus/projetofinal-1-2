@@ -31,7 +31,7 @@ public class FluxoForm extends JFrame {
 	 */
 	public FluxoForm(Correntista correntista_fluxo) throws ParseException {
 		setTitle("Fluxo de caixa");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 363, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,8 +67,8 @@ public class FluxoForm extends JFrame {
 					Double debito_form = Double.parseDouble(debito.getText());
 					fluxo.setSaida(debito_form);
 				}
-				fluxo.setAg(1);
-				fluxo.setConta(1);
+				fluxo.setAg(correntista_fluxo.getAg());
+				fluxo.setConta(correntista_fluxo.getConta());
 				try {
 					fluxodb.create(fluxo);
 				}catch(Exception e1) {
