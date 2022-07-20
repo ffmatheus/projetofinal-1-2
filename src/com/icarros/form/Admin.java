@@ -37,14 +37,14 @@ public class Admin extends JFrame {
 	public Admin() {
 		setTitle("Gerenciamento");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 724, 523);
+		setBounds(100, 100, 1046, 523);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(190, 86, 466, 355);
+		scrollPane.setBounds(190, 86, 761, 355);
 		contentPane.add(scrollPane);
 		
 		tabela = new JTable();
@@ -66,7 +66,7 @@ public class Admin extends JFrame {
 		JLabel lblNewLabel = new JLabel("Correntistas");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(190, 35, 379, 40);
+		lblNewLabel.setBounds(190, 35, 761, 40);
 		contentPane.add(lblNewLabel);
 		
 		//Exibindo os valores na tabela
@@ -99,7 +99,7 @@ public class Admin extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(42, 56, 89, 29);
+		btnNewButton.setBounds(42, 56, 109, 29);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Deletar");
@@ -120,7 +120,7 @@ public class Admin extends JFrame {
 				model.removeRow(row);				
 			}
 		});
-		btnNewButton_1.setBounds(42, 226, 89, 29);
+		btnNewButton_1.setBounds(42, 227, 109, 29);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Atualizar");
@@ -156,7 +156,7 @@ public class Admin extends JFrame {
 				
 			}
 		});
-		btnNewButton_2.setBounds(42, 311, 89, 29);
+		btnNewButton_2.setBounds(42, 311, 109, 29);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Inserir");
@@ -172,7 +172,7 @@ public class Admin extends JFrame {
 				createForm.setVisible(true);
 			}
 		});
-		btnNewButton_3.setBounds(42, 396, 89, 29);
+		btnNewButton_3.setBounds(42, 396, 109, 29);
 		contentPane.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Transacao");
@@ -214,7 +214,7 @@ public class Admin extends JFrame {
 				
 			}
 		});
-		btnNewButton_4.setBounds(42, 141, 89, 29);
+		btnNewButton_4.setBounds(42, 141, 109, 29);
 		contentPane.add(btnNewButton_4);
 	}
 }

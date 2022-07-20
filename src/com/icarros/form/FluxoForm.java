@@ -24,21 +24,6 @@ public class FluxoForm extends JFrame {
 	private JPanel contentPane;
 	CorrentistaDAO correntista = new CorrentistaDAO();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FluxoForm frame = new FluxoForm(null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
