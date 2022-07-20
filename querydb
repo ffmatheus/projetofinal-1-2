@@ -8,7 +8,7 @@ ag int not null,
 conta int not null,
 nome varchar(50) not null,
 email varchar(80) not null,
-telefone char(11) not null,
+telefone varchar(20) not null,
 saldo decimal(8,2) not null,
 primary key (ag,conta));
 

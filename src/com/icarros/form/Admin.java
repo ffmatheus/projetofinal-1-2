@@ -114,8 +114,10 @@ public class Admin extends JFrame {
 							JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				int ag = Integer.parseInt((String) model.getValueAt(row, 0));
-				int conta = Integer.parseInt((String) model.getValueAt(row, 1));
+				String ag_str = (String) model.getValueAt(row, 0);
+				int ag = Integer.parseInt(Formatador.toNumberString(ag_str));
+				String conta_str = (String) model.getValueAt(row, 1);
+				int conta = Integer.parseInt(Formatador.toNumberString(conta_str));
 				correntista.delete(ag, conta);
 				model.removeRow(row);				
 			}
